@@ -32,7 +32,7 @@ class _SharedStringsMaintainer {
   }
 
   String? value(int i) {
-    return i < _list.length ? _list[i] : null;
+    return i < _list.length ? _list[i] : _list.last;
   }
 
   void clear() {
