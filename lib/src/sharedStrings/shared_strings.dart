@@ -40,6 +40,8 @@ class _SharedStringsMaintainer {
   SharedString? value(int i) {
     if (i < _list.length) {
       return _list[i];
+    } if (_list.isNotEmpty) {
+      return _list.last;
     } else {
       return null;
     }
