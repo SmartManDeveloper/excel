@@ -270,15 +270,16 @@ class Parser {
       });
 
       document.findAllElements('numFmts').forEach((node1) {
-        node1.findAllElements('numFmt').forEach((node) {
+        for (var node in node1.findAllElements('numFmt')) {
           final numFmtId = int.parse(node.getAttribute('numFmtId')!);
           final formatCode = node.getAttribute('formatCode')!;
           if (numFmtId < 164) {
-            throw Exception('custom numFmtId starts at 164 but found a value of $numFmtId');
+            continue;
+            // throw Exception('custom numFmtId starts at 164 but found a value of $numFmtId');
           }
 
           _excel._numFormats.add(numFmtId, NumFormat.custom(formatCode: formatCode));
-        });
+        }
       });
 
       document.findAllElements('cellXfs').forEach((node1) {
