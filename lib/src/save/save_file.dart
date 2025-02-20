@@ -41,10 +41,9 @@ class Save {
         if (_archiveFiles.containsKey(file.name)) {
           copy = _archiveFiles[file.name]!;
         } else {
-          var content = file.content as Uint8List;
-          var compress = !_noCompression.contains(file.name);
-          copy = ArchiveFile(file.name, content.length, content)
-            ..compress = compress;
+          var content = file.rawContent!;
+          var compression = !_noCompression.contains(file.name) ? CompressionType.deflate : CompressionType.none;
+          copy = ArchiveFile.file(file.name, content.length, content, compression: compression);
         }
         clone.addFile(copy);
       }
